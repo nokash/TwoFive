@@ -1,0 +1,70 @@
+{% extends "base.html"%}
+
+{% block body %}
+
+<body class="body" style="margin-left: 100px;">
+	<div class="container-fluid" style="padding-right: 100px;">
+
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="publish-tab" data-toggle="tab" href="#publish" role="tab" aria-controls="publish" aria-selected="true">Publish A Post</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="delete-tab" data-toggle="tab" href="#delete" role="tab" aria-controls="delete" aria-selected="false">Delete Or Edit Post</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="false">Users Management</a>
+  </li>
+	<li class="nav-item">
+		<a class="nav-link" id="contact-tab" data-toggle="tab" href="#email" role="tab" aria-controls="email" aria-selected="false">Email Management</a>
+	</li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="publish" role="tabpanel" aria-labelledby="publish-tab">
+
+		  <form action="" method="post">
+		    <div class="form-group" style="margin-top: 5px; ">
+					<input type="text" class="form-control" placeholder="Author" name="author" value="{{request.form.author}}">
+		      <input class="form-control" type="text" placeholder="Title" name="title" value="{{request.form.title}}">
+		      <textarea class="form-control" style="margin-top: 5px; height: 400px;" rows="3" name="body" value="{{request.form.body}}"></textarea>
+
+		    </div>
+		    <form>
+		    <div class="form-group" style="margin-top: 5px">
+		      <label for="exampleFormControlFile1">Upload an image</label>
+		      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+		    </div>
+
+
+
+		    <button type="submit" class="btn btn-primary">Publish</button>
+
+
+		  </form>
+
+		</form>
+
+	</div>
+  <div class="tab-pane fade" id="delete" role="tabpanel" aria-labelledby="delete-tab">.
+		Unlimited Color Options
+
+It is a highly customizable theme with unlimited color options.
+There are several one-click color pickers to change colors for each and every theme element...</div>
+  <div class="tab-pane fade" id="users" role="tabpanel" aria-labelledby="contact-tab">
+Theme Documentation
+
+We have covered the most important functions on the detailed
+Theme instructions page that you can find here....</div>
+	<div class="tab-pane fade" id="email" role="tabpanel" aria-labelledby="delete-tab">.
+
+Font Awesome Icons
+
+This theme has a built in Font Awesome support.
+These are vector based icons that can be used in any color and size anywhere in the website...</div>
+
+</div>
+
+	</div>
+</body>
+
+{% endblock %}

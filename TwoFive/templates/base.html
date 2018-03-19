@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker-standalone.css">
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+
+  <title>ArcLAB</title>
+  </head>
+
+    <body class="body" style="background-color: #DDDCD5; margin-top: 90px;">
+    	<header class="mainHead">
+        <nav class="navbar fixed-top navbar-expand-lg" style="background-color: #000503;">
+      <a class="navbar-brand" href="/">
+      <img style="max-width: 120px; margin-top: -7px;" src="{{ url_for('.static', filename='logo.png')}}">
+        </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/posts/">Blog <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/partners/">Partners</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/services/">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/portfolio/">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/train/">Consultancy & Training</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Users
+          </a>
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% if session.logged_in %}
+          <a class="dropdown-item" href="/logout/">Log Out</a></a>
+          <a class="dropdown-item" href="/register/">Sign Up</a>
+          {% else %}
+          <a class="dropdown-item" href="/login/">Sign In</a>
+          <a class="dropdown-item" href="/register/">Sign Up</a>
+          {% endif %}
+        </div>
+
+      </div>
+      </div>
+    </nav>
+  </header>
+<div class="container-fluid" style="margin-left: 50px; min-height: 100%; ">
+  {% with messages = get_flashed_messages() %}
+    {% if messages%}
+      {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible" role="alert" style="width: 90%;">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times</span></button>
+          {{message}}
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  {% block body %}{% endblock %}
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+
+  <div class="footer-container" style="margin: 0">
+    <footer id="footer"  >
+      <div class="py-5 bg-dark" style="background-color: #e3f2fd; margin-top: 12px;">
+        <div class="row">
+          <div class="col-md-4 widget">
+            <h3 class="widget-title text-white"> Contact</h3>
+            <div class="widget-body">
+              <p class="text-left text-white"> ArcLAB<br>
+                <a href="mailto:#"> contactus@arclab.com</a><br>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 widget">
+            <h3 class="widget-title text-white">Follow ArcLAB</h3>
+            <div class="widget-body">
+
+                 <h3>
+                 <a href="https://www.facebook.com/nokashtech" target="_unknown"><i class="fa fa-facebook"></i></a>
+                 <a href="https://twitter.com/ashford_nokash" target="_unknown"><i class="fa fa-twitter"></i></a>
+                 <a href="https://plus.google.com/u/0/+ashfordnokash" target="_unknown"><i class="fa fa-google-plus"></i> </a>
+                 </h3>
+
+            </div>
+          </div>
+
+          <div class="col-md-4 widget">
+            <h3 class="widget-title text-center text-white"><a href="/about_us/">About Us</a></h3>
+            <div class="widget-body text-right">
+                <a href="mailto:#">contactus@arclab.com</a><br>
+                <br>
+                <p class="text-right text-white" style="padding-left: 10px">
+                Golden Gate Ave, San Francisco, CA 94115
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    </footer>
+
+    <footer id="underfooter" >
+      <div class="py-5 bg-dark" style="background-color: #076162; ">
+        <div class="row">
+
+          <div class="col-md-6 widget">
+            <div class="widget-body">
+              <p class="m-0 text-left text-white">Golden Gate Ave, San Francisco, CA 94115 </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 widget">
+            <div class="widget-body">
+              <p class="text-right text-white">
+                Copyright &copy; 2016, Nossa<br>
+                Design: <a href="https://www.nossa.com" rel="designer">Nossa Inc</a> </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+</html>

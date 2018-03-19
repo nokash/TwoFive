@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+
+{% block body %}
+
+<body class="body" style="margin-left: 100px">
+	<div class="container-fluid" style="margin-left: 100px;">
+		<h4>Register</h4>
+		<br>
+		{% from "_formhelpers.html" import render_field%}
+		<form method="post" action="/register/">
+			<dl>
+				{{render_field(form.username)}}
+				{{render_field(form.email)}}
+				{{render_field(form.password)}}
+				{{render_field(form.confirm)}}
+				{{render_field(form.tos_commit)}}
+			</dl>
+			<p><button type="submit" class="btn btn-primary">Register</button></p>
+		</form>
+		{% if error %}
+			<p class="error" ><strong>Error:</strong>{{error}}</p>
+
+		{% endif %}
+
+	</div>
+</body>
+
+{% endblock %}
