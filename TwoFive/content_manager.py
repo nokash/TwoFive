@@ -1,2 +1,2 @@
 def content():
-    TOPIC_DICT = {[[]]}
+    TOPIC_DICT = {}

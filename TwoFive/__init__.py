@@ -9,6 +9,7 @@ from functools import wraps
 import smtplib
 from flask_mail import Mail, Message
 import time as now
+import content_manager as content
 
 app = Flask(__name__)
 app.config.update(
@@ -74,7 +75,7 @@ def posts():
                                       Body=row[2],
                                       Date=row[3],
                                       Author=row[4]) for row in c.fetchall()]
-                        
+
 
                         c.close()
                         conn.close()
@@ -181,6 +182,7 @@ def admin_required(fn):
 @login_required
 @admin_required
 def publish():
+        TOPIC_DICT = Content()
         try:
                 c, conn = connection()
 
@@ -189,16 +191,19 @@ def publish():
 
 
                 if request.method == "POST":
-                        title = request.form['title']
-                        body = request.form['body']
+                        title = thwart(request.form['title'])
+                        url = "/%s/" % title.lower().replace("-","_").replace(")","").replace("(","").replace(".","").replace("/","-").replace("!","").replace(":","-").replace("'","").replace(" ","-")
+                        body = thwart(request.form['body'])
                         date = now.strftime('%Y-%m-%d %H:%M:%S')
-                        author = request.form['author']
+                        author = thwart(request.form['author'])
+
+                        # content.Content(TOPIC_DICT[title] = url)
 
                         c, conn = connection()
 
 
-                        c.execute("INSERT INTO post (title, body, date, author) VALUES ('%s','%s', '%s', '%s')" %
-                                                  ((title), (body), (date), (author)))
+                        c.execute("INSERT INTO post (title, body, date, author, url) VALUES ('%s','%s','%s', '%s', '%s')" %
+                                                  ((title), (body), (date), (author), (url)))
 
                         conn.commit()
 
