@@ -1,4 +1,4 @@
-from content_management import Content
+from content_manager import Content
 
 TOPIC_DICT = Content()
 

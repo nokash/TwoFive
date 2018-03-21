@@ -9,7 +9,7 @@ from functools import wraps
 import smtplib
 from flask_mail import Mail, Message
 import time as now
-import content_manager as content
+# from content_manager import Content, Get_Stuff
 
 app = Flask(__name__)
 app.config.update(
@@ -22,6 +22,9 @@ app.config.update(
         MAIL_PASSWORD = "slimshady'scrazy"
         )
 mail = Mail(app)
+
+# Post = Get_Stuff()
+# TOPIC_DICT = Content()
 
 @app.route('/')
 def homepage():
@@ -37,6 +40,7 @@ def services():
 def train():
 	return render_template("train.html")
 
+
 def postlist():
 
         try:
@@ -49,7 +53,9 @@ def postlist():
                                       Title=row[1],
                                       Body=row[2],
                                       Date=row[3],
-                                      Author=row[4]) for row in c.fetchall()]
+                                      Author=row[4],
+                                      Url=row[6]) for row in c.fetchall()]
+
 
                         c.close()
                         conn.close()
@@ -178,12 +184,38 @@ def admin_required(fn):
                                 return redirect(url_for('login_page'))
         return wrap
 
+def urllist():
+
+        try:
+                c, conn = connection()
+
+                if request.method == "GET":
+
+                        x = c.execute("SELECT * FROM post")
+
+                        Urls = [dict(id=row[0],
+                                      Title=row[1],
+                                      Body=row[2],
+                                      Date=row[3],
+                                      Author=row[4],
+                                      Url =row[6]) for row in c.fetchall()]
+
+                        c.close()
+                        conn.close()
+
+                        return Urls
+
+        except Exception as exc:
+                return (str(exc))
+
+
 @app.route('/adminpanel/', methods=["GET", "POST"])
 @login_required
 @admin_required
 def publish():
-        TOPIC_DICT = Content()
-        try:
+    Urls = postlist()
+
+    try:
                 c, conn = connection()
 
                 if 'username' in session:
@@ -197,8 +229,7 @@ def publish():
                         date = now.strftime('%Y-%m-%d %H:%M:%S')
                         author = thwart(request.form['author'])
 
-                        # content.Content(TOPIC_DICT[title] = url)
-
+                        # TOPIC_DICT[title] = url
                         c, conn = connection()
 
 
@@ -216,12 +247,13 @@ def publish():
 
 
 
-                return render_template("adminpanel.html")
+                        # flash(Urls)
+                return render_template("adminpanel.html", Urls=Urls)
 
 
 
                 #return render_template("register.html")
-        except Exception as exc:
+    except Exception as exc:
                 return (str(exc))
 
 
