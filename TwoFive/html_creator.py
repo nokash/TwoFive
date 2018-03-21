@@ -1,5 +1,7 @@
-efrom content_management import Content
+from content_manager import Content
 import os
+
+TOPIC_DICT = Content()
 
 HTML_TEMPLATE = '''
 
