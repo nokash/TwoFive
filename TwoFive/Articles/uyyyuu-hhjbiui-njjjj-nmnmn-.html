@@ -3,7 +3,15 @@
 {% extends "base.html" %}
 
 {% block body %}
+<<<<<<< HEAD
 {% for post in Posts %}
+=======
+<<<<<<< HEAD
+{% for post in Post %}
+=======
+{% for post in Posts %}
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
+>>>>>>> 791273663c9d0733adab2f87bac8e5c252eeba53
 <body class="padding-top: 54px; min-width: 992px;">
 
   <!-- Page Content -->
@@ -153,8 +161,18 @@
 <ul class="pre-scrollable smooth-scroll list-unstyled">
 
     <li>
+<<<<<<< HEAD
       {% for title in Post %}
         <h5><a href="#test1">{{ title.Title }}</a></h5>
+=======
+<<<<<<< HEAD
+      {% for title in TOPIC_DICT["Articles"] %}
+        <h5><a href="{{title[1]}}">{{title[0]}}</a></h5>
+=======
+      {% for title in Post %}
+        <h5><a href="#test1">{{ title.Title }}</a></h5>
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
+>>>>>>> 791273663c9d0733adab2f87bac8e5c252eeba53
       {% endfor %}
 
     </li>
