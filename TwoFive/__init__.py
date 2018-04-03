@@ -9,7 +9,10 @@ from functools import wraps
 import smtplib
 from flask_mail import Mail, Message
 import time as now
-# from content_manager import Content, Get_Stuff
+from content_manager import Content
+
+
+TOPIC_DICT = Content()
 
 app = Flask(__name__)
 app.config.update(
@@ -19,7 +22,7 @@ app.config.update(
         MAIL_PORT = 465,
         MAIL_USE_SSL = True,
         MAIL_USERNAME = 'ashfordnokash@gmial.com',
-        MAIL_PASSWORD = "slimshady'scrazy"
+        MAIL_PASSWORD = "$5$rounds=535000$xfRqsuXbyjd0E.jh$eXJj9Ky/H4l.Tnd3Pgw4Ew2/MZWqcZBa95pLS58MpgD"
         )
 mail = Mail(app)
 
@@ -41,24 +44,23 @@ def train():
 	return render_template("train.html")
 
 
-def postlist():
-
+def postlist(id):
         try:
                 c, conn = connection()
 
-                if request.method == "GET":
 
-                        x = c.execute("SELECT * FROM post")
-                        Post = [dict(id=row[0],
-                                      Title=row[1],
-                                      Body=row[2],
-                                      Date=row[3],
-                                      Author=row[4],
-                                      Url=row[6]) for row in c.fetchall()]
+                x = c.execute("SELECT * FROM post where id = '%s'" % id)
+                x = c.fetchall()
+                for row in x:
+                    Post = [dict(id=row[0],
+                    Title=row[1],
+                    Body=row[2],
+                    Date=row[3],
+                    Author=row[4],
+                    Url=row[6])]
 
-
-                        c.close()
-                        conn.close()
+                    c.close()
+                    conn.close()
 
                 return Post
 
@@ -67,13 +69,14 @@ def postlist():
 
 @app.route('/posts/', methods=["GET", "POST"])
 def posts():
-        Post = postlist()
+        # Post = postlist()
 
 
         try:
                 c, conn = connection()
 
                 if request.method == "GET":
+
 
                         x = c.execute("SELECT * FROM post ORDER BY ID DESC LIMIT 1")
                         Posts = [dict(id=row[0],
@@ -88,7 +91,8 @@ def posts():
 
 
 
-                return render_template("posts.html", Posts=Posts, Post=Post)
+
+                return render_template("posts.html", Posts=Posts,TOPIC_DICT=TOPIC_DICT)
 
         except Exception as exc:
                 return (str(exc))
@@ -203,7 +207,7 @@ def urllist():
                         c.close()
                         conn.close()
 
-                        return Urls
+                return Urls
 
         except Exception as exc:
                 return (str(exc))
@@ -213,7 +217,7 @@ def urllist():
 @login_required
 @admin_required
 def publish():
-    Urls = postlist()
+    Urls = urllist()
 
     try:
                 c, conn = connection()
@@ -305,6 +309,83 @@ def method_not_found():
 @app.errorhandler(500)
 def server_isht():
      return render_template("error500.html")
+
+@app.route(TOPIC_DICT["Articles"][5][1], methods = ["GET", "POST"])
+def ggfg():
+    url = TOPIC_DICT["Articles"][5][1]
+    id = TOPIC_DICT["Articles"][5][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("ggfg.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][11][1], methods = ["GET", "POST"])
+def hvgvjjbhj():
+    url = TOPIC_DICT["Articles"][11][1]
+    id = TOPIC_DICT["Articles"][11][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("hvgvjjbhj.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][20][1], methods = ["GET", "POST"])
+def sasdsadsaddsa():
+    url = TOPIC_DICT["Articles"][20][1]
+    id = TOPIC_DICT["Articles"][20][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("sasdsadsaddsa.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][21][1], methods = ["GET", "POST"])
+def Conspiracy():
+    url = TOPIC_DICT["Articles"][21][1]
+    id = TOPIC_DICT["Articles"][21][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("conspiracy.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+
+
+def uyyyuuhhjbiuinjjjjnmnmn():
+    url = TOPIC_DICT["Articles"][24][1]
+    id = TOPIC_DICT["Articles"][24][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("uyyyuu-hhjbiui-njjjj-nmnmn-.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][25][1], methods = ["GET", "POST"])
+def Arch():
+    url = TOPIC_DICT["Articles"][25][1]
+    id = TOPIC_DICT["Articles"][25][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("arch.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
 
 
 class RegistrationForm(Form):

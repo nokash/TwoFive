@@ -8,7 +8,7 @@ HTML_TEMPLATE = '''
 {% extends "base.html" %}
 
 {% block body %}
-{% for post in Posts %}
+{% for post in Post %}
 <body class="padding-top: 54px; min-width: 992px;">
 
   <!-- Page Content -->
@@ -113,40 +113,7 @@ HTML_TEMPLATE = '''
           </div>
         </div>
 
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">JavaScript</a>
-                  </li>
-                  <li>
-                    <a href="#">CSS</a>
-                  </li>
-                  <li>
-                    <a href="#">Tutorials</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         <!-- Side Widget -->
         <div class="card my-4">
@@ -158,8 +125,8 @@ HTML_TEMPLATE = '''
 <ul class="pre-scrollable smooth-scroll list-unstyled">
 
     <li>
-      {% for title in Post %}
-        <h5><a href="#test1">{{ title.Title }}</a></h5>
+      {% for title in TOPIC_DICT["Articles"] %}
+        <h5><a href="{{title[1]}}">{{title[0]}}</a></h5>
       {% endfor %}
 
     </li>

@@ -4,9 +4,14 @@ TOPIC_DICT = Content()
 
 FUNC_TEMPLATE = '''
 
-@app.route('TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][1], methods = ['GET', 'POST'])
+@app.route(TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][1], methods = ["GET", "POST"])
 def CURRENTTITLE():
-	return render_template("post/CURRENTTOPIC/CURRENTHTML")
+				url = TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][1]
+				id = TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][2]
+				Post = postlist(id)
+				flash(id)
+				flash(Post)
+				return render_template("CURRENTHTML",TOPIC_DICT=TOPIC_DICT, Post=Post)
 
  '''
 
@@ -19,7 +24,7 @@ for each_topic in TOPIC_DICT:
         try:
             CURRENTHTML = (eachele[1]+'.html').replace("/","")
             CURRENTTOPIC = each_topic
-            CURRENTTITLE = eachele[0].replace("-","_").replace(")","").replace("(","").replace(".","").replace("!","").replace(":","-").replace("'","")
+            CURRENTTITLE = eachele[0].replace(" ","").replace("-","_").replace(")","").replace("(","").replace(".","").replace("!","").replace(":","-").replace("'","")
             CURRENTINDEX = str(index_counter)
             NEXTINDEX = str(index_counter + 1)
             index_counter += 1

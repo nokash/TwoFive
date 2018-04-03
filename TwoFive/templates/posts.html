@@ -151,10 +151,9 @@
 <ul class="pre-scrollable smooth-scroll list-unstyled">
 
     <li>
-      {% for title in Post %}
-        <h5><a href="#test1">{{ title.Title }}</a></h5>
+      {% for title in TOPIC_DICT["Articles"] %}
+           <h5><a href="{{title[1]}}">{{title[0]}}</a></h5>
       {% endfor %}
-
     </li>
 
 </ul>
