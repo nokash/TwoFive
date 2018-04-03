@@ -9,10 +9,14 @@ from functools import wraps
 import smtplib
 from flask_mail import Mail, Message
 import time as now
+<<<<<<< HEAD
 from content_manager import Content
 
 
 TOPIC_DICT = Content()
+=======
+# from content_manager import Content, Get_Stuff
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
 
 app = Flask(__name__)
 app.config.update(
@@ -43,12 +47,18 @@ def services():
 def train():
 	return render_template("train.html")
 
+<<<<<<< HEAD
+=======
+
+def postlist():
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
 
 def postlist(id):
         try:
                 c, conn = connection()
 
 
+<<<<<<< HEAD
                 x = c.execute("SELECT * FROM post where id = '%s'" % id)
                 x = c.fetchall()
                 for row in x:
@@ -58,6 +68,16 @@ def postlist(id):
                     Date=row[3],
                     Author=row[4],
                     Url=row[6])]
+=======
+                        x = c.execute("SELECT * FROM post")
+                        Post = [dict(id=row[0],
+                                      Title=row[1],
+                                      Body=row[2],
+                                      Date=row[3],
+                                      Author=row[4],
+                                      Url=row[6]) for row in c.fetchall()]
+
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
 
                     c.close()
                     conn.close()
@@ -207,7 +227,11 @@ def urllist():
                         c.close()
                         conn.close()
 
+<<<<<<< HEAD
                 return Urls
+=======
+                        return Urls
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
 
         except Exception as exc:
                 return (str(exc))
@@ -217,7 +241,11 @@ def urllist():
 @login_required
 @admin_required
 def publish():
+<<<<<<< HEAD
     Urls = urllist()
+=======
+    Urls = postlist()
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
 
     try:
                 c, conn = connection()

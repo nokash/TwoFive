@@ -3,6 +3,7 @@ from flask import request
 
 
 def Content():
+<<<<<<< HEAD
 
     TOPIC_DICT = {"Articles":[
 
@@ -32,6 +33,36 @@ def Content():
                                 ["uyyyuu hhjbiui njjjj nmnmn ","/uyyyuu-hhjbiui-njjjj-nmnmn-/", "54"],
                                 ["uyyyuu hhjbiui njjjj nmnmn ","/uyyyuu-hhjbiui-njjjj-nmnmn-/", "55"],
                                 ["Arch","/arch/", "56"]
+=======
+    
+    TOPIC_DICT = {"Articles":[
+                                ["ggfg","/ggfg/"],
+                                ["ggfg","/ggfg/"],
+                                ["ggfg","/ggfg/"],
+                                ["ggfg","/ggfg/"],
+                                ["ggfg","/ggfg/"],
+                                ["ggfg","/ggfg/"],
+                                ["ggfg","/ggfg/"],
+                                ["hvgvjjbhj","/hvgvjjbhj/"],
+                                ["hvgvjjbhj","/hvgvjjbhj/"],
+                                ["hvgvjjbhj","/hvgvjjbhj/"],
+                                ["hvgvjjbhj","/hvgvjjbhj/"],
+                                ["hvgvjjbhj","/hvgvjjbhj/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["sasdsadsaddsa","/sasdsadsaddsa/"],
+                                ["Conspiracy","/conspiracy/"],
+                                ["Conspiracy","/conspiracy/"],
+                                ["uyyyuu hhjbiui njjjj nmnmn ","/uyyyuu-hhjbiui-njjjj-nmnmn-/"],
+                                ["uyyyuu hhjbiui njjjj nmnmn ","/uyyyuu-hhjbiui-njjjj-nmnmn-/"],
+                                ["Arch","/arch/"]
+>>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
                             ]}
 
 
