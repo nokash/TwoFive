@@ -461,7 +461,7 @@ class RegistrationForm(Form):
 
 
 if __name__ == "__main__":
-     app.secret_key = 'M_Pure822'
+     app.secret_key = '$5$rounds=535000$yhMtuPilzxBgGmBV$KgeGQESSKf5IUdpwqjRkLCOYRosFjjzmZ57xW1H0C/1'
      app.config['SESSION_TYPE'] = 'filesystem'
 
      #sess.init_app(app)
