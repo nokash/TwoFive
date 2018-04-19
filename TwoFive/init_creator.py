@@ -6,12 +6,12 @@ FUNC_TEMPLATE = '''
 
 @app.route(TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][1], methods = ["GET", "POST"])
 def CURRENTTITLE():
-				url = TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][1]
-				id = TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][2]
-				Post = postlist(id)
-				flash(id)
-				flash(Post)
-				return render_template("CURRENTHTML",TOPIC_DICT=TOPIC_DICT, Post=Post)
+    url = TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][1]
+    id = TOPIC_DICT["CURRENTTOPIC"][CURRENTINDEX][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("CURRENTHTML",TOPIC_DICT=TOPIC_DICT, Post=Post)
 
  '''
 

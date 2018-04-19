@@ -9,14 +9,10 @@ from functools import wraps
 import smtplib
 from flask_mail import Mail, Message
 import time as now
-<<<<<<< HEAD
 from content_manager import Content
 
 
 TOPIC_DICT = Content()
-=======
-# from content_manager import Content, Get_Stuff
->>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
 
 app = Flask(__name__)
 app.config.update(
@@ -25,7 +21,7 @@ app.config.update(
         MAIL_SERVER = 'smtp.gmail.com',
         MAIL_PORT = 465,
         MAIL_USE_SSL = True,
-        MAIL_USERNAME = 'ashfordnokash@gmial.com',
+        MAIL_USERNAME = 'ashfordnokash@gmail.com',
         MAIL_PASSWORD = "$5$rounds=535000$xfRqsuXbyjd0E.jh$eXJj9Ky/H4l.Tnd3Pgw4Ew2/MZWqcZBa95pLS58MpgD"
         )
 mail = Mail(app)
@@ -47,40 +43,27 @@ def services():
 def train():
 	return render_template("train.html")
 
-<<<<<<< HEAD
-=======
 
-def postlist():
->>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
+
 
 def postlist(id):
         try:
                 c, conn = connection()
 
 
-<<<<<<< HEAD
+
                 x = c.execute("SELECT * FROM post where id = '%s'" % id)
-                x = c.fetchall()
-                for row in x:
-                    Post = [dict(id=row[0],
-                    Title=row[1],
-                    Body=row[2],
-                    Date=row[3],
-                    Author=row[4],
-                    Url=row[6])]
-=======
-                        x = c.execute("SELECT * FROM post")
-                        Post = [dict(id=row[0],
-                                      Title=row[1],
-                                      Body=row[2],
-                                      Date=row[3],
-                                      Author=row[4],
-                                      Url=row[6]) for row in c.fetchall()]
+                Post = [dict(id=row[0],
+                                  Title=row[1],
+                                  Body=row[2],
+                                  Date=row[3],
+                                  Author=row[4],
+                                  Url=row[6]) for row in c.fetchall()]
 
->>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
 
-                    c.close()
-                    conn.close()
+
+                c.close()
+                conn.close()
 
                 return Post
 
@@ -211,41 +194,37 @@ def admin_required(fn):
 def urllist():
 
         try:
-                c, conn = connection()
+            c, conn = connection()
 
-                if request.method == "GET":
+            x = c.execute("SELECT * FROM post")
 
-                        x = c.execute("SELECT * FROM post")
+            Urls = [dict(id=row[0],
+                                  Title=row[1],
+                                  Body=row[2],
+                                  Date=row[3],
+                                  Author=row[4],
+                                  Url =row[6]) for row in c.fetchall()]
 
-                        Urls = [dict(id=row[0],
-                                      Title=row[1],
-                                      Body=row[2],
-                                      Date=row[3],
-                                      Author=row[4],
-                                      Url =row[6]) for row in c.fetchall()]
+            c.close()
+            conn.close()
 
-                        c.close()
-                        conn.close()
 
-<<<<<<< HEAD
-                return Urls
-=======
-                        return Urls
->>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
+            return Urls
+
+
 
         except Exception as exc:
-                return (str(exc))
+            return (str(exc))
 
 
 @app.route('/adminpanel/', methods=["GET", "POST"])
 @login_required
 @admin_required
 def publish():
-<<<<<<< HEAD
+#
     Urls = urllist()
-=======
-    Urls = postlist()
->>>>>>> 41f9199593e797a1bf1ffe0da30159d7fb849d10
+
+
 
     try:
                 c, conn = connection()
@@ -279,12 +258,12 @@ def publish():
 
 
 
-                        # flash(Urls)
+                        flash(Urls)
                 return render_template("adminpanel.html", Urls=Urls)
 
 
 
-                #return render_template("register.html")
+
     except Exception as exc:
                 return (str(exc))
 
@@ -338,10 +317,10 @@ def method_not_found():
 def server_isht():
      return render_template("error500.html")
 
-@app.route(TOPIC_DICT["Articles"][5][1], methods = ["GET", "POST"])
+@app.route(TOPIC_DICT["Articles"][0][1], methods = ["GET", "POST"])
 def ggfg():
-    url = TOPIC_DICT["Articles"][5][1]
-    id = TOPIC_DICT["Articles"][5][2]
+    url = TOPIC_DICT["Articles"][0][1]
+    id = TOPIC_DICT["Articles"][0][2]
     Post = postlist(id)
     flash(id)
     flash(Post)
@@ -350,11 +329,10 @@ def ggfg():
 
 
 
-
-@app.route(TOPIC_DICT["Articles"][11][1], methods = ["GET", "POST"])
+@app.route(TOPIC_DICT["Articles"][1][1], methods = ["GET", "POST"])
 def hvgvjjbhj():
-    url = TOPIC_DICT["Articles"][11][1]
-    id = TOPIC_DICT["Articles"][11][2]
+    url = TOPIC_DICT["Articles"][1][1]
+    id = TOPIC_DICT["Articles"][1][2]
     Post = postlist(id)
     flash(id)
     flash(Post)
@@ -363,12 +341,10 @@ def hvgvjjbhj():
 
 
 
-
-
-@app.route(TOPIC_DICT["Articles"][20][1], methods = ["GET", "POST"])
+@app.route(TOPIC_DICT["Articles"][2][1], methods = ["GET", "POST"])
 def sasdsadsaddsa():
-    url = TOPIC_DICT["Articles"][20][1]
-    id = TOPIC_DICT["Articles"][20][2]
+    url = TOPIC_DICT["Articles"][2][1]
+    id = TOPIC_DICT["Articles"][2][2]
     Post = postlist(id)
     flash(id)
     flash(Post)
@@ -377,11 +353,10 @@ def sasdsadsaddsa():
 
 
 
-
-@app.route(TOPIC_DICT["Articles"][21][1], methods = ["GET", "POST"])
+@app.route(TOPIC_DICT["Articles"][3][1], methods = ["GET", "POST"])
 def Conspiracy():
-    url = TOPIC_DICT["Articles"][21][1]
-    id = TOPIC_DICT["Articles"][21][2]
+    url = TOPIC_DICT["Articles"][3][1]
+    id = TOPIC_DICT["Articles"][3][2]
     Post = postlist(id)
     flash(id)
     flash(Post)
@@ -390,11 +365,10 @@ def Conspiracy():
 
 
 
-
-
+@app.route(TOPIC_DICT["Articles"][4][1], methods = ["GET", "POST"])
 def uyyyuuhhjbiuinjjjjnmnmn():
-    url = TOPIC_DICT["Articles"][24][1]
-    id = TOPIC_DICT["Articles"][24][2]
+    url = TOPIC_DICT["Articles"][4][1]
+    id = TOPIC_DICT["Articles"][4][2]
     Post = postlist(id)
     flash(id)
     flash(Post)
@@ -403,15 +377,75 @@ def uyyyuuhhjbiuinjjjjnmnmn():
 
 
 
-
-@app.route(TOPIC_DICT["Articles"][25][1], methods = ["GET", "POST"])
+@app.route(TOPIC_DICT["Articles"][5][1], methods = ["GET", "POST"])
 def Arch():
-    url = TOPIC_DICT["Articles"][25][1]
-    id = TOPIC_DICT["Articles"][25][2]
+    url = TOPIC_DICT["Articles"][5][1]
+    id = TOPIC_DICT["Articles"][5][2]
     Post = postlist(id)
     flash(id)
     flash(Post)
     return render_template("arch.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][6][1], methods = ["GET", "POST"])
+def ttee():
+    url = TOPIC_DICT["Articles"][6][1]
+    id = TOPIC_DICT["Articles"][6][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("ttee.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][7][1], methods = ["GET", "POST"])
+def ttetet():
+    url = TOPIC_DICT["Articles"][7][1]
+    id = TOPIC_DICT["Articles"][7][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("ttetet.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][8][1], methods = ["GET", "POST"])
+def gyvbfhnijgfvbuhjmfvbh():
+    url = TOPIC_DICT["Articles"][8][1]
+    id = TOPIC_DICT["Articles"][8][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("gyvbfhnijgfvbuhjmfvbh.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][9][1], methods = ["GET", "POST"])
+def tuugugg():
+    url = TOPIC_DICT["Articles"][9][1]
+    id = TOPIC_DICT["Articles"][9][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("tuugugg.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
+
+
+
+@app.route(TOPIC_DICT["Articles"][10][1], methods = ["GET", "POST"])
+def ydugydgydsyuydsyds():
+    url = TOPIC_DICT["Articles"][10][1]
+    id = TOPIC_DICT["Articles"][10][2]
+    Post = postlist(id)
+    flash(id)
+    flash(Post)
+    return render_template("ydugydgydsyuydsyds.html",TOPIC_DICT=TOPIC_DICT, Post=Post)
+
 
 
 

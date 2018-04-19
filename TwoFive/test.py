@@ -5,7 +5,7 @@ c, conn = connection()
 # if request.method == "GET":
 
 
-x = c.execute("SELECT * FROM post where id = '31'")
+x = c.execute("SELECT * FROM post")
 x = c.fetchall()
 for row in x:
 
